@@ -13,9 +13,10 @@ import AVFoundation
 
 /// Initializes an AVFoundation capture session for streaming real-time video.
 class VideoImageTextureProvider: NSObject {
-       let captureSession = AVCaptureSession()
+    
+    let captureSession = AVCaptureSession()
     let sampleBufferCallbackQueue = DispatchQueue(label: "MetalImageFiltersQueue")
-    weak var delegate: VideoImageTextureProviderDelegate!
+    weak var imageSourceDelegate: VideoImageTextureProviderDelegate!
     
     // MARK: Initialization
 
@@ -23,7 +24,7 @@ class VideoImageTextureProvider: NSObject {
     required init?(delegate: VideoImageTextureProviderDelegate) {
         super.init()
         
-               self.delegate = delegate
+        self.imageSourceDelegate = delegate
         
         // Class initialization fails if the capture session could not be initialized.
         if(!didInitializeCaptureSession()) {
@@ -34,11 +35,8 @@ class VideoImageTextureProvider: NSObject {
     /// Attempts to initialize a capture session.
     func didInitializeCaptureSession() -> Bool {
         
-        /* The capture session preset is fixed at a 960x540 pixel resolution that matches the MTKView pixel resolution.
-           This ensures screen size compatibility with all target iOS devices, without having to downsample or transform the video image.
-        */
         captureSession.sessionPreset = AVCaptureSessionPreset640x480
-      //  captureSession.sessionPreset = AVCaptureSessionPresetLow
+        //  captureSession.sessionPreset = AVCaptureSessionPresetLow
         
         // Use a guard to ensure the method can access a video capture device with a given camera position
         guard let camera = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera,
@@ -102,8 +100,8 @@ extension VideoImageTextureProvider: AVCaptureVideoDataOutputSampleBufferDelegat
         //change
         connection.videoOrientation = AVCaptureVideoOrientation(rawValue: UIApplication.shared.statusBarOrientation.rawValue)! // UIDevice.current.orientation.rawValue
         
-            let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
-        delegate.videoImageTextureProvider(self, pixelBuffer: pixelBuffer!)
+        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        imageSourceDelegate.videoImageTextureProvider(self, pixelBuffer: pixelBuffer!)
        
     }
     

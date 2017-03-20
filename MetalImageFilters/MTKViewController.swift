@@ -46,7 +46,7 @@ class MTKViewController: UIViewController {
         bufferProvider = BufferProvider(device: device, inflightBuffersCount: 3, sizeOfUniformsBuffer: sizeOfUniformsBuffer)
         
         // Create camera far plane
-        backgroundPlane = Plane(name: "Plane", device: device, commandQ: commandQueue, textureLoader: textureLoader, srcImage: "cube", typeImage: "png")
+        backgroundPlane = Plane(name: "Plane", device: device, commandQ: commandQueue, textureLoader: textureLoader, srcImage: "black", typeImage: "jpg")
         backgroundPlane.scale = float3(x:282, y: 500, z: 1) // 14:25 * 20
         backgroundPlane.position.z = -994.0 // -1000 (far plane) + 5 (camera position) +1
         
@@ -56,7 +56,7 @@ class MTKViewController: UIViewController {
         // Create Light
         light = Light(color: (1.0,1.0,1.0), ambientIntensity: 0.2, direction: (0.0, 0.0, 1.0), diffuseIntensity: 0.8, shininess: 10, specularIntensity: 2)
         
-        point = Point(name: "Point", device: device, commandQ: commandQueue, textureLoader: textureLoader, srcImage: "cube", typeImage: "png")
+        point = Point(name: "Point", device: device, commandQ: commandQueue, textureLoader: textureLoader, srcImage: "black", typeImage: "jpg")
     }
     
     // MARK: Metal Setup
@@ -155,12 +155,12 @@ extension MTKViewController: MTKViewDelegate {
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
         // Wait to the next Buffer
-        _ = bufferProvider.avaliableResourcesSemaphore.wait(timeout: .distantFuture)
+        _ = bufferProvider.availableResourcesSemaphore.wait(timeout: .distantFuture)
         
         // Get avaiable buffer and create a command buffer
         let commandBuffer = commandQueue.makeCommandBuffer()
         commandBuffer.addCompletedHandler { (commandBuffer) -> Void in
-            self.bufferProvider.avaliableResourcesSemaphore.signal()
+            self.bufferProvider.availableResourcesSemaphore.signal()
         }
         
         // Create and setting a Render Command Encoder

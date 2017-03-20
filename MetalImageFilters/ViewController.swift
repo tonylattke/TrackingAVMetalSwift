@@ -61,6 +61,7 @@ class ViewController: MTKViewController {
 func floatArrayToFloat4x4(array: [Float]) -> float4x4 {
     var matrix = float4x4()
     
+    /*
     matrix[0][0] = array[0]
     matrix[0][1] = array[1]
     matrix[0][2] = array[2]
@@ -82,7 +83,7 @@ func floatArrayToFloat4x4(array: [Float]) -> float4x4 {
     matrix[3][1] = array[13]
     matrix[3][2] = array[14]
     matrix[3][3] = array[15]
-    /*
+    */
     var i = 0
     while i < 4 {
         var j = 0
@@ -92,7 +93,6 @@ func floatArrayToFloat4x4(array: [Float]) -> float4x4 {
         }
         i += 1
     }
-    */
     return matrix
 }
 
@@ -141,51 +141,6 @@ extension ViewController: VideoImageTextureProviderDelegate {
             }
             
         }
-/*
-        // Update background
-        DispatchQueue.main.sync {
-            sourceTexture = texture
-        }
-        
-        if (!testing){
-            tracker?.setImage(pixelBuffer)
-            
-            if (self.startTracking && self.initTracking){
-                self.tracker?.setPunkteB()
-                self.tracker?.addArrowPoints() // check
-                self.tracker?.blackBoxDefineProjection((self.tracker?.getImageWidth())!, (self.tracker?.getImageHeight())!, 1.7777, 1, "Test")
-                showCubeUpdate(value: true)
-                self.tracker?.paintMouseDots()
-                self.initTracking = false
-            } else if (self.startTracking) {
-                self.tracker?.track()
-                if (self.tracker?.getMViewN() != 0 && self.tracker?.getMViewM() != 0) {
-                    // mview of tracking set in cube
-                }
-            } else if (self.stopTracking){
-                self.tracker?.clearAll()
-                self.stopTracking = false
-                self.tracker?.mouseDotsClear() // check
-                showCubeUpdate(value: false)
-            }
-        }
-        
-        if (testing){
-            showCube = true
-        }
-
-        if (showCube){
-            let newPosition: float3 = cube.position
-            let newRotation: float3 = float3(cube.rotation.x-0.05,cube.rotation.y-0.05,cube.rotation.z)
-            let newScale: float3 = cube.scale
-            updateCube(position: newPosition, rotation: newRotation, scale: newScale)
-        }
-        
-        //call the MTKView's draw() method whenever the camera provides a new video frame
-        DispatchQueue.main.async {
-            self.mtkView.draw()
-        }
-         */
     }
 }
 

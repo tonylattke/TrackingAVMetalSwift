@@ -13,13 +13,13 @@ class BufferProvider {
     
     let inflightBuffersCount: Int
     private var uniformsBuffers: [MTLBuffer]
-    private var avaliableBufferIndex: Int = 0
+    private var availableBufferIndex: Int = 0
     
-    var avaliableResourcesSemaphore:DispatchSemaphore
+    var availableResourcesSemaphore:DispatchSemaphore
     
     init(device:MTLDevice, inflightBuffersCount: Int, sizeOfUniformsBuffer: Int) {
         
-        avaliableResourcesSemaphore = DispatchSemaphore(value: inflightBuffersCount)
+        availableResourcesSemaphore = DispatchSemaphore(value: inflightBuffersCount)
         
         self.inflightBuffersCount = inflightBuffersCount
         uniformsBuffers = [MTLBuffer]()
@@ -33,14 +33,14 @@ class BufferProvider {
     deinit{
         var i = 0
         while i < inflightBuffersCount {
-            self.avaliableResourcesSemaphore.signal()
+            self.availableResourcesSemaphore.signal()
             i += 1
         }
     }
     
     func nextUniformsBuffer(projectionMatrix: float4x4, modelViewMatrix: float4x4, light: Light) -> MTLBuffer {
         
-        let buffer = uniformsBuffers[avaliableBufferIndex]
+        let buffer = uniformsBuffers[availableBufferIndex]
         let bufferPointer = buffer.contents()
         
         var projectionMatrix = projectionMatrix
@@ -50,9 +50,9 @@ class BufferProvider {
         memcpy(bufferPointer + MemoryLayout<Float>.size*float4x4.numberOfElements(), &projectionMatrix, MemoryLayout<Float>.size*float4x4.numberOfElements())
         memcpy(bufferPointer + 2*MemoryLayout<Float>.size*float4x4.numberOfElements(), light.raw(), Light.size())
         
-        avaliableBufferIndex += 1
-        if avaliableBufferIndex == inflightBuffersCount{
-            avaliableBufferIndex = 0
+        availableBufferIndex += 1
+        if availableBufferIndex == inflightBuffersCount{
+            availableBufferIndex = 0
         }
         
         return buffer

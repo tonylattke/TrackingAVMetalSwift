@@ -20,7 +20,6 @@
 		EACA0DB01E648F490087613B /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DAF1E648F490087613B /* Shaders.metal */; };
 		EACA0DB21E648FCC0087613B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB11E648FCC0087613B /* Vertex.swift */; };
 		EACA0DB41E6490180087613B /* float4x4+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB31E6490180087613B /* float4x4+Extensions.swift */; };
-		EACA0DB61E64905B0087613B /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB51E64905B0087613B /* Node.swift */; };
 		EACA0DB81E6490770087613B /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB71E6490770087613B /* Cube.swift */; };
 		EACA0DBA1E6490990087613B /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB91E6490990087613B /* Plane.swift */; };
 		EACA0DBC1E6490CB0087613B /* BufferProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DBB1E6490CB0087613B /* BufferProvider.swift */; };
@@ -56,7 +55,6 @@
 		EACA0DAF1E648F490087613B /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		EACA0DB11E648FCC0087613B /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
 		EACA0DB31E6490180087613B /* float4x4+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "float4x4+Extensions.swift"; sourceTree = "<group>"; };
-		EACA0DB51E64905B0087613B /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EACA0DB71E6490770087613B /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
 		EACA0DB91E6490990087613B /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		EACA0DBB1E6490CB0087613B /* BufferProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferProvider.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				EACA0DAF1E648F490087613B /* Shaders.metal */,
 				EACA0DB11E648FCC0087613B /* Vertex.swift */,
 				EACA0DB31E6490180087613B /* float4x4+Extensions.swift */,
-				EACA0DB51E64905B0087613B /* Node.swift */,
 				EACA0DB71E6490770087613B /* Cube.swift */,
 				EACA0DB91E6490990087613B /* Plane.swift */,
 				EACA0DBB1E6490CB0087613B /* BufferProvider.swift */,
@@ -285,7 +282,6 @@
 				3E8F321C1D3CA98F000DECF0 /* VideoImageTextureProvider.swift in Sources */,
 				EACA0DB81E6490770087613B /* Cube.swift in Sources */,
 				EACA5C5C1E650B0000929396 /* Tracking.cpp in Sources */,
-				EACA0DB61E64905B0087613B /* Node.swift in Sources */,
 				EACA0DB41E6490180087613B /* float4x4+Extensions.swift in Sources */,
 				EACA0DB01E648F490087613B /* Shaders.metal in Sources */,
 				3E4369CD1D26BC66000A490E /* ViewController.swift in Sources */,
@@ -428,7 +424,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/MetalImageFilters/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.MetalImageFilters";
+				PRODUCT_BUNDLE_IDENTIFIER = hs.bremen.de.Tracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MetalImageFilters/MetalImageFilters-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -451,7 +447,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/MetalImageFilters/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.MetalImageFilters";
+				PRODUCT_BUNDLE_IDENTIFIER = hs.bremen.de.Tracking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MetalImageFilters/MetalImageFilters-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
