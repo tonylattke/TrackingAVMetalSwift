@@ -1,0 +1,486 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E4369CB1D26BC66000A490E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4369CA1D26BC66000A490E /* AppDelegate.swift */; };
+		3E4369CD1D26BC66000A490E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4369CC1D26BC66000A490E /* ViewController.swift */; };
+		3E4369D01D26BC66000A490E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4369CE1D26BC66000A490E /* Main.storyboard */; };
+		3E4369D21D26BC66000A490E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4369D11D26BC66000A490E /* Assets.xcassets */; };
+		3E4369D51D26BC66000A490E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4369D31D26BC66000A490E /* LaunchScreen.storyboard */; };
+		3E8F321C1D3CA98F000DECF0 /* VideoImageTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F321B1D3CA98F000DECF0 /* VideoImageTextureProvider.swift */; };
+		3EABC9721D447E5500C3EDC3 /* StillImageTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABC9711D447E5500C3EDC3 /* StillImageTextureProvider.swift */; };
+		EA403FD31E6509090049DA9E /* TrackingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = EA403FD21E6509090049DA9E /* TrackingWrapper.mm */; };
+		EAABE70D1E7192B0002F964C /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAABE70C1E7192B0002F964C /* Point.swift */; };
+		EACA0DAE1E6486370087613B /* MTKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DAD1E6486370087613B /* MTKViewController.swift */; };
+		EACA0DB01E648F490087613B /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DAF1E648F490087613B /* Shaders.metal */; };
+		EACA0DB21E648FCC0087613B /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB11E648FCC0087613B /* Vertex.swift */; };
+		EACA0DB41E6490180087613B /* float4x4+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB31E6490180087613B /* float4x4+Extensions.swift */; };
+		EACA0DB61E64905B0087613B /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB51E64905B0087613B /* Node.swift */; };
+		EACA0DB81E6490770087613B /* Cube.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB71E6490770087613B /* Cube.swift */; };
+		EACA0DBA1E6490990087613B /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DB91E6490990087613B /* Plane.swift */; };
+		EACA0DBC1E6490CB0087613B /* BufferProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DBB1E6490CB0087613B /* BufferProvider.swift */; };
+		EACA0DBE1E6490E10087613B /* Light.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DBD1E6490E10087613B /* Light.swift */; };
+		EACA0DC01E6490FD0087613B /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DBF1E6490FD0087613B /* Camera.swift */; };
+		EACA0DC21E64975D0087613B /* black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EACA0DC11E64975D0087613B /* black.jpg */; };
+		EACA0DC41E65047D0087613B /* cube.png in Resources */ = {isa = PBXBuildFile; fileRef = EACA0DC31E65047D0087613B /* cube.png */; };
+		EACA5C521E650B0000929396 /* Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C3A1E650B0000929396 /* Assert.cpp */; };
+		EACA5C571E650B0000929396 /* Mat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C461E650B0000929396 /* Mat.cpp */; };
+		EACA5C581E650B0000929396 /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C481E650B0000929396 /* matrix.c */; };
+		EACA5C591E650B0000929396 /* myGL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C4A1E650B0000929396 /* myGL.cpp */; };
+		EACA5C5A1E650B0000929396 /* shader.c in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C4C1E650B0000929396 /* shader.c */; };
+		EACA5C5C1E650B0000929396 /* Tracking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C501E650B0000929396 /* Tracking.cpp */; };
+		EACA5C5F1E650B9500929396 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACA5C5E1E650B9500929396 /* opencv2.framework */; };
+		EACA5C631E65CA8300929396 /* VideoImageTextureProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA5C621E65CA8300929396 /* VideoImageTextureProviderDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3E4369C71D26BC66000A490E /* MetalImageFilters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalImageFilters.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E4369CA1D26BC66000A490E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3E4369CC1D26BC66000A490E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E4369CF1D26BC66000A490E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E4369D11D26BC66000A490E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E4369D41D26BC66000A490E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3E4369D61D26BC66000A490E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E8F321B1D3CA98F000DECF0 /* VideoImageTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoImageTextureProvider.swift; sourceTree = "<group>"; };
+		3EABC9711D447E5500C3EDC3 /* StillImageTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StillImageTextureProvider.swift; sourceTree = "<group>"; };
+		EA403FD11E6509080049DA9E /* MetalImageFilters-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MetalImageFilters-Bridging-Header.h"; sourceTree = "<group>"; };
+		EA403FD21E6509090049DA9E /* TrackingWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackingWrapper.mm; sourceTree = "<group>"; };
+		EA403FD41E65095A0049DA9E /* TrackingWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackingWrapper.h; sourceTree = "<group>"; };
+		EAABE70C1E7192B0002F964C /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		EACA0DAD1E6486370087613B /* MTKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTKViewController.swift; sourceTree = "<group>"; };
+		EACA0DAF1E648F490087613B /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		EACA0DB11E648FCC0087613B /* Vertex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		EACA0DB31E6490180087613B /* float4x4+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "float4x4+Extensions.swift"; sourceTree = "<group>"; };
+		EACA0DB51E64905B0087613B /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		EACA0DB71E6490770087613B /* Cube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cube.swift; sourceTree = "<group>"; };
+		EACA0DB91E6490990087613B /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		EACA0DBB1E6490CB0087613B /* BufferProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BufferProvider.swift; sourceTree = "<group>"; };
+		EACA0DBD1E6490E10087613B /* Light.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Light.swift; sourceTree = "<group>"; };
+		EACA0DBF1E6490FD0087613B /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		EACA0DC11E64975D0087613B /* black.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = black.jpg; path = Images/black.jpg; sourceTree = "<group>"; };
+		EACA0DC31E65047D0087613B /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cube.png; path = Images/cube.png; sourceTree = "<group>"; };
+		EACA5C3A1E650B0000929396 /* Assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Assert.cpp; path = cpp/Assert.cpp; sourceTree = "<group>"; };
+		EACA5C3B1E650B0000929396 /* Assert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Assert.hpp; path = cpp/Assert.hpp; sourceTree = "<group>"; };
+		EACA5C461E650B0000929396 /* Mat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Mat.cpp; path = cpp/Mat.cpp; sourceTree = "<group>"; };
+		EACA5C471E650B0000929396 /* Mat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mat.h; path = cpp/Mat.h; sourceTree = "<group>"; };
+		EACA5C481E650B0000929396 /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = matrix.c; path = cpp/matrix.c; sourceTree = "<group>"; };
+		EACA5C491E650B0000929396 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = matrix.h; path = cpp/matrix.h; sourceTree = "<group>"; };
+		EACA5C4A1E650B0000929396 /* myGL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = myGL.cpp; path = cpp/myGL.cpp; sourceTree = "<group>"; };
+		EACA5C4B1E650B0000929396 /* myGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myGL.h; path = cpp/myGL.h; sourceTree = "<group>"; };
+		EACA5C4C1E650B0000929396 /* shader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = shader.c; path = cpp/shader.c; sourceTree = "<group>"; };
+		EACA5C4D1E650B0000929396 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shader.h; path = cpp/shader.h; sourceTree = "<group>"; };
+		EACA5C501E650B0000929396 /* Tracking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Tracking.cpp; path = cpp/Tracking.cpp; sourceTree = "<group>"; };
+		EACA5C511E650B0000929396 /* Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tracking.h; path = cpp/Tracking.h; sourceTree = "<group>"; };
+		EACA5C5E1E650B9500929396 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../opencv2.framework; sourceTree = "<group>"; };
+		EACA5C621E65CA8300929396 /* VideoImageTextureProviderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoImageTextureProviderDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E4369C41D26BC66000A490E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EACA5C5F1E650B9500929396 /* opencv2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E4369BE1D26BC66000A490E = {
+			isa = PBXGroup;
+			children = (
+				3E4369C91D26BC66000A490E /* MetalImageFilters */,
+				3E4369C81D26BC66000A490E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E4369C81D26BC66000A490E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E4369C71D26BC66000A490E /* MetalImageFilters.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E4369C91D26BC66000A490E /* MetalImageFilters */ = {
+			isa = PBXGroup;
+			children = (
+				EACA5C5E1E650B9500929396 /* opencv2.framework */,
+				3E4369CC1D26BC66000A490E /* ViewController.swift */,
+				EA403FD11E6509080049DA9E /* MetalImageFilters-Bridging-Header.h */,
+				3E4369CE1D26BC66000A490E /* Main.storyboard */,
+				EACA5C601E65C6F300929396 /* Images */,
+				EACA5C611E65C70800929396 /* resources */,
+				EACA5C5D1E650B0800929396 /* cpp */,
+				EA403FD71E6509C10049DA9E /* metal */,
+				EA403FD51E6509730049DA9E /* objective-C */,
+				3E8F32181D3CA854000DECF0 /* ImageTextureProviders */,
+			);
+			path = MetalImageFilters;
+			sourceTree = "<group>";
+		};
+		3E8F32181D3CA854000DECF0 /* ImageTextureProviders */ = {
+			isa = PBXGroup;
+			children = (
+				3E8F321B1D3CA98F000DECF0 /* VideoImageTextureProvider.swift */,
+				EACA5C621E65CA8300929396 /* VideoImageTextureProviderDelegate.swift */,
+				3EABC9711D447E5500C3EDC3 /* StillImageTextureProvider.swift */,
+			);
+			path = ImageTextureProviders;
+			sourceTree = "<group>";
+		};
+		EA403FD51E6509730049DA9E /* objective-C */ = {
+			isa = PBXGroup;
+			children = (
+				EA403FD21E6509090049DA9E /* TrackingWrapper.mm */,
+				EA403FD41E65095A0049DA9E /* TrackingWrapper.h */,
+			);
+			name = "objective-C";
+			sourceTree = "<group>";
+		};
+		EA403FD71E6509C10049DA9E /* metal */ = {
+			isa = PBXGroup;
+			children = (
+				EACA0DAD1E6486370087613B /* MTKViewController.swift */,
+				EACA0DAF1E648F490087613B /* Shaders.metal */,
+				EACA0DB11E648FCC0087613B /* Vertex.swift */,
+				EACA0DB31E6490180087613B /* float4x4+Extensions.swift */,
+				EACA0DB51E64905B0087613B /* Node.swift */,
+				EACA0DB71E6490770087613B /* Cube.swift */,
+				EACA0DB91E6490990087613B /* Plane.swift */,
+				EACA0DBB1E6490CB0087613B /* BufferProvider.swift */,
+				EACA0DBD1E6490E10087613B /* Light.swift */,
+				EACA0DBF1E6490FD0087613B /* Camera.swift */,
+				EAABE70C1E7192B0002F964C /* Point.swift */,
+			);
+			name = metal;
+			sourceTree = "<group>";
+		};
+		EACA5C5D1E650B0800929396 /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				EACA5C3A1E650B0000929396 /* Assert.cpp */,
+				EACA5C3B1E650B0000929396 /* Assert.hpp */,
+				EACA5C461E650B0000929396 /* Mat.cpp */,
+				EACA5C471E650B0000929396 /* Mat.h */,
+				EACA5C481E650B0000929396 /* matrix.c */,
+				EACA5C491E650B0000929396 /* matrix.h */,
+				EACA5C4A1E650B0000929396 /* myGL.cpp */,
+				EACA5C4B1E650B0000929396 /* myGL.h */,
+				EACA5C4C1E650B0000929396 /* shader.c */,
+				EACA5C4D1E650B0000929396 /* shader.h */,
+				EACA5C501E650B0000929396 /* Tracking.cpp */,
+				EACA5C511E650B0000929396 /* Tracking.h */,
+			);
+			name = cpp;
+			sourceTree = "<group>";
+		};
+		EACA5C601E65C6F300929396 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EACA0DC11E64975D0087613B /* black.jpg */,
+				EACA0DC31E65047D0087613B /* cube.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		EACA5C611E65C70800929396 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				3E4369CA1D26BC66000A490E /* AppDelegate.swift */,
+				3E4369D11D26BC66000A490E /* Assets.xcassets */,
+				3E4369D31D26BC66000A490E /* LaunchScreen.storyboard */,
+				3E4369D61D26BC66000A490E /* Info.plist */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E4369C61D26BC66000A490E /* MetalImageFilters */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E4369D91D26BC66000A490E /* Build configuration list for PBXNativeTarget "MetalImageFilters" */;
+			buildPhases = (
+				3E4369C31D26BC66000A490E /* Sources */,
+				3E4369C41D26BC66000A490E /* Frameworks */,
+				3E4369C51D26BC66000A490E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MetalImageFilters;
+			productName = MetaPerformanceShaderShowcase;
+			productReference = 3E4369C71D26BC66000A490E /* MetalImageFilters.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E4369BF1D26BC66000A490E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "";
+				TargetAttributes = {
+					3E4369C61D26BC66000A490E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = PETS3Y3UCQ;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3E4369C21D26BC66000A490E /* Build configuration list for PBXProject "MetalImageFilters" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E4369BE1D26BC66000A490E;
+			productRefGroup = 3E4369C81D26BC66000A490E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E4369C61D26BC66000A490E /* MetalImageFilters */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E4369C51D26BC66000A490E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E4369D51D26BC66000A490E /* LaunchScreen.storyboard in Resources */,
+				3E4369D21D26BC66000A490E /* Assets.xcassets in Resources */,
+				3E4369D01D26BC66000A490E /* Main.storyboard in Resources */,
+				EACA0DC41E65047D0087613B /* cube.png in Resources */,
+				EACA0DC21E64975D0087613B /* black.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E4369C31D26BC66000A490E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA403FD31E6509090049DA9E /* TrackingWrapper.mm in Sources */,
+				EACA5C631E65CA8300929396 /* VideoImageTextureProviderDelegate.swift in Sources */,
+				EACA5C591E650B0000929396 /* myGL.cpp in Sources */,
+				EACA5C571E650B0000929396 /* Mat.cpp in Sources */,
+				EACA5C581E650B0000929396 /* matrix.c in Sources */,
+				3E8F321C1D3CA98F000DECF0 /* VideoImageTextureProvider.swift in Sources */,
+				EACA0DB81E6490770087613B /* Cube.swift in Sources */,
+				EACA5C5C1E650B0000929396 /* Tracking.cpp in Sources */,
+				EACA0DB61E64905B0087613B /* Node.swift in Sources */,
+				EACA0DB41E6490180087613B /* float4x4+Extensions.swift in Sources */,
+				EACA0DB01E648F490087613B /* Shaders.metal in Sources */,
+				3E4369CD1D26BC66000A490E /* ViewController.swift in Sources */,
+				3EABC9721D447E5500C3EDC3 /* StillImageTextureProvider.swift in Sources */,
+				EACA5C521E650B0000929396 /* Assert.cpp in Sources */,
+				EACA0DB21E648FCC0087613B /* Vertex.swift in Sources */,
+				EACA5C5A1E650B0000929396 /* shader.c in Sources */,
+				EACA0DBC1E6490CB0087613B /* BufferProvider.swift in Sources */,
+				3E4369CB1D26BC66000A490E /* AppDelegate.swift in Sources */,
+				EACA0DC01E6490FD0087613B /* Camera.swift in Sources */,
+				EACA0DBA1E6490990087613B /* Plane.swift in Sources */,
+				EACA0DBE1E6490E10087613B /* Light.swift in Sources */,
+				EACA0DAE1E6486370087613B /* MTKViewController.swift in Sources */,
+				EAABE70D1E7192B0002F964C /* Point.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3E4369CE1D26BC66000A490E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E4369CF1D26BC66000A490E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3E4369D31D26BC66000A490E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E4369D41D26BC66000A490E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E4369D71D26BC66000A490E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		3E4369D81D26BC66000A490E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E4369DA1D26BC66000A490E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PETS3Y3UCQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MetalImageFilters/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.MetalImageFilters";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MetalImageFilters/MetalImageFilters-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E4369DB1D26BC66000A490E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PETS3Y3UCQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/MetalImageFilters/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.MetalImageFilters";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MetalImageFilters/MetalImageFilters-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E4369C21D26BC66000A490E /* Build configuration list for PBXProject "MetalImageFilters" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E4369D71D26BC66000A490E /* Debug */,
+				3E4369D81D26BC66000A490E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E4369D91D26BC66000A490E /* Build configuration list for PBXNativeTarget "MetalImageFilters" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E4369DA1D26BC66000A490E /* Debug */,
+				3E4369DB1D26BC66000A490E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E4369BF1D26BC66000A490E /* Project object */;
+}
