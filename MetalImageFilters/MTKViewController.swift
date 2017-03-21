@@ -34,7 +34,6 @@ class MTKViewController: UIViewController {
     var backgroundPlane: Plane!
     var light: Light!
     var showCube: Bool = false
-    
     var point: Point!
     
     // MARK: Scene init
@@ -140,7 +139,7 @@ class MTKViewController: UIViewController {
     }
     
     func updateCube(position:float3, rotation:float3, scale:float3){
-        /*   cube.position = position
+         /*cube.position = position
          cube.rotation = rotation
          cube.scale = scale*/
     }
@@ -169,9 +168,6 @@ extension MTKViewController: MTKViewDelegate {
         renderPassDescriptor.colorAttachments[0].loadAction = .clear
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-        //renderPassDescriptor.colorAttachments[0].provideImageData(backgroundPlane.texture?., bytesPerRow: (backgroundPlane.texture?.bufferBytesPerRow)!, origin: 0, 0, size: (backgroundPlane.texture?.width)!, (backgroundPlane.texture?.height)!, userInfo: nil)
-        // IDEA send image to the initial buffer
-        
         // Wait to the next Buffer
         _ = bufferProvider.availableResourcesSemaphore.wait(timeout: .distantFuture)
         
@@ -194,10 +190,8 @@ extension MTKViewController: MTKViewDelegate {
         //point.render(pipelineState: basicPipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView: point.modelMatrix())
         
         // Render the cube
-        //showCube = false
         if (showCube) {
             if let mview  = cube.mV {
-                //mview=mview.transpose
                 cube.render(pipelineState: pipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:mview)
             } else {
                 cube.render(pipelineState: pipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:cube.modelMatrix())

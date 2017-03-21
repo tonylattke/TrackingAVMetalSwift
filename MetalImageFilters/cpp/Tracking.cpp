@@ -57,8 +57,8 @@ void Tracking::writeVecs(){
 			screenX_VEC.push_back(punkteB.at(i).x);
 			screenY_VEC.push_back(punkteB.at(i).y);
 
-			markers_VEC_X.push_back(markersY[i]); //markersX
-			markers_VEC_Y.push_back(markersX[i]); //markersY
+			markers_VEC_X.push_back(markersX[i]); //markersX
+			markers_VEC_Y.push_back(markersY[i]); //markersY
 			markers_VEC_Z.push_back(markersZ[i]);
 		}
 	} 
@@ -74,22 +74,22 @@ void Tracking::calcMVP(){
     Mat L1 = Mat(3,markers_VEC_X.size());
 	
 	for(int i = 0; i < markers_VEC_X.size(); i++) {
-		L.Set(0, i, markers_VEC_Y.at(i));
-		L.Set(1, i, markers_VEC_X.at(i));
+		L.Set(0, i, markers_VEC_X.at(i));
+		L.Set(1, i, markers_VEC_Y.at(i));
 		L.Set(2, i, 0);
 	}
 
     
     for(int i = 0; i < markers_VEC_X.size(); i++) {
-        L1.Set(0, i, markers_VEC_Y.at(i));
-        L1.Set(1, i, markers_VEC_X.at(i));
+        L1.Set(0, i, markers_VEC_X.at(i));
+        L1.Set(1, i, markers_VEC_Y.at(i));
         L1.Set(2, i, 1.f);
     }
     
 
 	mView = BlackBox.RecoverModelview(sx, sy, L);
     
-    mView.Print("model view ");
+    mView.Print("model view Martin");
     
     //  Mat p=BlackBox.Local2Screen(testpoint);
 	Mat S = BlackBox.Local2Screen(L);
@@ -171,26 +171,39 @@ void Tracking::addArrowPoints(){
     */
     
     //Tony / 2
-    mouseDots.push_back(cv::Point2f(214,415));
+  /*  mouseDots.push_back(cv::Point2f(214,415));
     mouseDots.push_back(cv::Point2f(263,415));
     mouseDots.push_back(cv::Point2f(263,320));
     mouseDots.push_back(cv::Point2f(286.5,320));
     mouseDots.push_back(cv::Point2f(238.5,248.5));
     mouseDots.push_back(cv::Point2f(214,320));
-    mouseDots.push_back(cv::Point2f(181.5,320));
+    mouseDots.push_back(cv::Point2f(181.5,320));*/
      
-    /*tony original points
-    mouseDots.push_back(cv::Point2f(270,430));
+    /*tony original points*/
+   /* mouseDots.push_back(cv::Point2f(270,430));
     mouseDots.push_back(cv::Point2f(368,430));
     mouseDots.push_back(cv::Point2f(368,240));
     mouseDots.push_back(cv::Point2f(415,240));
     mouseDots.push_back(cv::Point2f(319,97));
     mouseDots.push_back(cv::Point2f(270,240));
     mouseDots.push_back(cv::Point2f(223,240));
-    */
+   */
+    mouseDots.push_back(cv::Point2f(270,430));
+    mouseDots.push_back(cv::Point2f(368,430));
+    mouseDots.push_back(cv::Point2f(368,240));
+    mouseDots.push_back(cv::Point2f(415,240));
+    mouseDots.push_back(cv::Point2f(320,97));
+    mouseDots.push_back(cv::Point2f(225,240));
+    mouseDots.push_back(cv::Point2f(270,240));
+   
+   
+ 
     
+  
+ 
+  
     /*
-    Mat sx = Mat(1,7);
+     Mat sx = Mat(1,7);
     Mat sy = Mat(1,7);
     
     sx.Set(0, 0, 270);

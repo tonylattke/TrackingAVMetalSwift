@@ -93,6 +93,21 @@ func floatArrayToFloat4x4(array: [Float]) -> float4x4 {
         }
         i += 1
     }
+    //matrix = matrix.transpose
+    print("model View Metal")
+    /* let ve=matrix[1]
+    matrix[1]=matrix[2]
+    matrix[2]=ve
+   let sc=matrix[1][1]
+    matrix[1][1]=matrix[0][0]
+    matrix[0][0]=sc
+    let sc1=matrix[1][2]
+    matrix[1][2]=matrix[0][2]
+    matrix[0][2]=sc1
+    let sc2=matrix[2][1]
+    matrix[2][1]=matrix[2][0]
+    matrix[2][0]=sc2*/
+    print(matrix )
     return matrix
 }
 
@@ -129,6 +144,10 @@ extension ViewController: VideoImageTextureProviderDelegate {
             }
             
             if (self.showCube){
+//                let newPosition: float3 = float3((self.cube.mV?[0][3])!, (self.cube.mV?[1][3])!, (self.cube.mV?[2][3])!)
+//                let newRotation: float3 = self.cube.rotation
+//                let newScale: float3 = self.cube.scale
+
                 let newPosition: float3 = self.cube.position
                 let newRotation: float3 = float3(self.cube.rotation.x-0.05,self.cube.rotation.y-0.05,self.cube.rotation.z)
                 let newScale: float3 = self.cube.scale
