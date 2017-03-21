@@ -102,6 +102,7 @@ void Tracking::calcMVP(){
         
         cv::circle(bild, cv::Point2d(S1.Get(0,i), S1.Get(1,i)), 3, cv::Scalar(0,255,0), -1, CV_AA);
 
+        cv::line(bild, cv::Point2d(S.Get(0,i), S.Get(1,i)), cv::Point2d(S1.Get(0,i), S1.Get(1,i)),cv::Scalar(255,255,255));
      /* y x
         cv::line(bild, cv::Point2d(S.Get(1,0), S.Get(0,0)), cv::Point2d(S.Get(1,1), S.Get(0,1)),cv::Scalar(255,255,255));
         cv::line(bild, cv::Point2d(S.Get(1,1), S.Get(0,1)), cv::Point2d(S.Get(1,2), S.Get(0,2)),cv::Scalar(255,255,255));
@@ -112,7 +113,7 @@ void Tracking::calcMVP(){
         cv::line(bild, cv::Point2d(S.Get(1,6), S.Get(0,6)), cv::Point2d(S.Get(1,0), S.Get(0,0)),cv::Scalar(255,255,255));
         */
  
-     /* x y
+     // x y
         cv::line(bild, cv::Point2d(S.Get(0,0), S.Get(1,0)), cv::Point2d(S.Get(0,1), S.Get(1,1)),cv::Scalar(255,255,255));
         cv::line(bild, cv::Point2d(S.Get(0,1), S.Get(1,1)), cv::Point2d(S.Get(0,2), S.Get(1,2)),cv::Scalar(255,255,255));
         cv::line(bild, cv::Point2d(S.Get(0,2), S.Get(1,2)), cv::Point2d(S.Get(0,3), S.Get(1,3)),cv::Scalar(255,255,255));
@@ -128,7 +129,7 @@ void Tracking::calcMVP(){
         cv::line(bild, cv::Point2d(S1.Get(0,4), S1.Get(1,4)), cv::Point2d(S1.Get(0,5), S1.Get(1,5)),cv::Scalar(255,0,0));
         cv::line(bild, cv::Point2d(S1.Get(0,5), S1.Get(1,5)), cv::Point2d(S1.Get(0,6), S1.Get(1,6)),cv::Scalar(255,0,0));
         cv::line(bild, cv::Point2d(S1.Get(0,6), S1.Get(1,6)), cv::Point2d(S1.Get(0,0), S1.Get(1,0)),cv::Scalar(255,0,0));
-        */
+        
     }
    
     

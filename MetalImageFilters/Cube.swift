@@ -81,11 +81,6 @@ class Cube {
             Q,R,S ,Q,S,T,   //Bot
             U,V,W ,U,W,X    //Back
         ]
-       func modelMatrix() -> float4x4 {
-            var matrix = float4x4()
-            matrix.translate(0, y: 0, z: -2.4)
-            return matrix
-        }
 
         // Apply default texture
         let path = Bundle.main.path(forResource: srcImage, ofType: typeImage)!
@@ -118,6 +113,12 @@ class Cube {
     
     deinit {
         //TODO: dealloc(1) to each var
+    }
+    
+    func modelMatrix() -> float4x4 {
+        var matrix = float4x4()
+        matrix.translate(0, y: 0, z: -2.4)
+        return matrix
     }
     
     func loadTexture(pixelBuffer: CVPixelBuffer){
@@ -164,14 +165,6 @@ class Cube {
         
         // Draw primitives
         renderEncoderOpt.drawPrimitives(type: .triangle, vertexStart: 0, vertexCount: vertexCount, instanceCount: vertexCount/3)
-    }
-    
-    func modelMatrix() -> float4x4 {
-        var matrix = float4x4()
-        matrix.translate(position.x, y: position.y, z: position.z)
-        matrix.rotateAroundX(rotation.x, y: rotation.y, z: rotation.z)
-        matrix.scale(scale.x, y: scale.y, z: scale.z)
-        return matrix
     }
     
     // Update Delta

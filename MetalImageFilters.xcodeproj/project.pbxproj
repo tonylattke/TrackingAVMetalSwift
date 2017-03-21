@@ -13,7 +13,6 @@
 		3E4369D21D26BC66000A490E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E4369D11D26BC66000A490E /* Assets.xcassets */; };
 		3E4369D51D26BC66000A490E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E4369D31D26BC66000A490E /* LaunchScreen.storyboard */; };
 		3E8F321C1D3CA98F000DECF0 /* VideoImageTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8F321B1D3CA98F000DECF0 /* VideoImageTextureProvider.swift */; };
-		3EABC9721D447E5500C3EDC3 /* StillImageTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EABC9711D447E5500C3EDC3 /* StillImageTextureProvider.swift */; };
 		EA403FD31E6509090049DA9E /* TrackingWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = EA403FD21E6509090049DA9E /* TrackingWrapper.mm */; };
 		EAABE70D1E7192B0002F964C /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAABE70C1E7192B0002F964C /* Point.swift */; };
 		EACA0DAE1E6486370087613B /* MTKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACA0DAD1E6486370087613B /* MTKViewController.swift */; };
@@ -46,7 +45,6 @@
 		3E4369D41D26BC66000A490E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E4369D61D26BC66000A490E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E8F321B1D3CA98F000DECF0 /* VideoImageTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoImageTextureProvider.swift; sourceTree = "<group>"; };
-		3EABC9711D447E5500C3EDC3 /* StillImageTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StillImageTextureProvider.swift; sourceTree = "<group>"; };
 		EA403FD11E6509080049DA9E /* MetalImageFilters-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MetalImageFilters-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA403FD21E6509090049DA9E /* TrackingWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackingWrapper.mm; sourceTree = "<group>"; };
 		EA403FD41E65095A0049DA9E /* TrackingWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrackingWrapper.h; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 			children = (
 				3E8F321B1D3CA98F000DECF0 /* VideoImageTextureProvider.swift */,
 				EACA5C621E65CA8300929396 /* VideoImageTextureProviderDelegate.swift */,
-				3EABC9711D447E5500C3EDC3 /* StillImageTextureProvider.swift */,
 			);
 			path = ImageTextureProviders;
 			sourceTree = "<group>";
@@ -285,7 +282,6 @@
 				EACA0DB41E6490180087613B /* float4x4+Extensions.swift in Sources */,
 				EACA0DB01E648F490087613B /* Shaders.metal in Sources */,
 				3E4369CD1D26BC66000A490E /* ViewController.swift in Sources */,
-				3EABC9721D447E5500C3EDC3 /* StillImageTextureProvider.swift in Sources */,
 				EACA5C521E650B0000929396 /* Assert.cpp in Sources */,
 				EACA0DB21E648FCC0087613B /* Vertex.swift in Sources */,
 				EACA5C5A1E650B0000929396 /* shader.c in Sources */,

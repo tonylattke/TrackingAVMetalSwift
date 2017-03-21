@@ -23,8 +23,11 @@ class MTKViewController: UIViewController {
     var textureLoader: MTKTextureLoader! = nil
     var pipelineState: MTLRenderPipelineState! = nil
     var basicPipelineState: MTLRenderPipelineState! = nil
+    var cameraPipelineState: MTLRenderPipelineState! = nil
     var depthStencilState: MTLDepthStencilState! = nil
+    var cameraDepthStencilState: MTLDepthStencilState! = nil
     var mv: float4x4?
+    
     // MARK: Scene objects
     var camera: Camera!
     var cube: Cube!
@@ -78,6 +81,11 @@ class MTKViewController: UIViewController {
         depthStencilDescriptor.isDepthWriteEnabled = true
         depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor)
         
+        let cameraDepthStencilDescriptor = MTLDepthStencilDescriptor()
+        cameraDepthStencilDescriptor.depthCompareFunction = .less
+        cameraDepthStencilDescriptor.isDepthWriteEnabled = false
+        cameraDepthStencilState = device.makeDepthStencilState(descriptor: cameraDepthStencilDescriptor)
+        
         // Setting command queue
         commandQueue = device.makeCommandQueue()
         
@@ -85,6 +93,7 @@ class MTKViewController: UIViewController {
         let defaultLibrary = device.newDefaultLibrary()
         // Vertex Shaders
         let vertexProgram = defaultLibrary!.makeFunction(name: "basic_vertex")
+        let cameraVertexProgram = defaultLibrary!.makeFunction(name: "camera_vertex")
         // Fragment Shaders
         let basicFragmentProgram = defaultLibrary!.makeFunction(name: "basic_fragment")
         let lightFragmentProgram = defaultLibrary!.makeFunction(name: "light_complex_fragment")
@@ -99,11 +108,17 @@ class MTKViewController: UIViewController {
         basicPipelineStateDescriptor.vertexFunction = vertexProgram
         basicPipelineStateDescriptor.fragmentFunction = basicFragmentProgram
         basicPipelineStateDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        // Create a Render Pipeline without lights and projections
+        let cameraPipelineStateDescriptor = MTLRenderPipelineDescriptor()
+        cameraPipelineStateDescriptor.vertexFunction = cameraVertexProgram
+        cameraPipelineStateDescriptor.fragmentFunction = basicFragmentProgram
+        cameraPipelineStateDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
         
         // Pipeline connection
         do {
             pipelineState = try device.makeRenderPipelineState(descriptor: pipelineStateDescriptor)
             basicPipelineState = try device.makeRenderPipelineState(descriptor: basicPipelineStateDescriptor)
+            cameraPipelineState = try device.makeRenderPipelineState(descriptor: cameraPipelineStateDescriptor)
         } catch  {
             print("Error creating pipeline")
         }
@@ -154,6 +169,9 @@ extension MTKViewController: MTKViewDelegate {
         renderPassDescriptor.colorAttachments[0].loadAction = .clear
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
+        //renderPassDescriptor.colorAttachments[0].provideImageData(backgroundPlane.texture?., bytesPerRow: (backgroundPlane.texture?.bufferBytesPerRow)!, origin: 0, 0, size: (backgroundPlane.texture?.width)!, (backgroundPlane.texture?.height)!, userInfo: nil)
+        // IDEA send image to the initial buffer
+        
         // Wait to the next Buffer
         _ = bufferProvider.availableResourcesSemaphore.wait(timeout: .distantFuture)
         
@@ -166,19 +184,20 @@ extension MTKViewController: MTKViewDelegate {
         // Create and setting a Render Command Encoder
         let renderEncoderOpt = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
         renderEncoderOpt.setCullMode(MTLCullMode.front)
-        renderEncoderOpt.setDepthStencilState(depthStencilState)
+        renderEncoderOpt.setDepthStencilState(cameraDepthStencilState)
         
         // Render plane with the current content of the camera
-        //backgroundPlane.texture = sourceTexture
-        backgroundPlane.render(pipelineState: basicPipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:backgroundPlane.modelMatrix())
-        
+        backgroundPlane.render(pipelineState: cameraPipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:backgroundPlane.modelMatrix())
+  
+        renderEncoderOpt.setDepthStencilState(depthStencilState)
+
         //point.render(pipelineState: basicPipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView: point.modelMatrix())
         
         // Render the cube
         //showCube = false
         if (showCube) {
             if let mview  = cube.mV {
-//                print(mview)
+                //mview=mview.transpose
                 cube.render(pipelineState: pipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:mview)
             } else {
                 cube.render(pipelineState: pipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:cube.modelMatrix())

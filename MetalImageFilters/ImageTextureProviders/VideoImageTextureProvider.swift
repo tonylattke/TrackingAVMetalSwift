@@ -1,12 +1,10 @@
-/*
-    Copyright (C) 2017 Apple Inc. All Rights Reserved.
-    See LICENSE.txt for this sample’s licensing information
-    
-    Abstract:
-    Video Image Texture Provider for MetalImageFilters.
-            Uses CoreVideo buffers to load a stream of AVFoundation video images into a Metal texture.
-            The Metal textures are delivered to the View Controller via a protocol delegate.
- */
+//
+//  VideoImageTextureProvider.swift
+//  MetalImageFilters
+//
+//  Created by Tony Lattke on 28.02.17.
+//
+//
 
 import UIKit
 import AVFoundation

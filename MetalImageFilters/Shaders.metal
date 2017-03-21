@@ -75,6 +75,19 @@ vertex VertexOut basic_vertex(
     return VertexOut;
 }
 
+// Camera - Vertex shader
+vertex VertexOut camera_vertex(
+                              const device VertexIn* vertex_array [[ buffer(0) ]],
+                              const device Uniforms&  uniforms    [[ buffer(1) ]],
+                              unsigned int vid [[ vertex_id ]]) {
+    VertexIn VertexIn = vertex_array[vid];
+    
+    VertexOut VertexOut;
+    VertexOut.position = float4(VertexIn.position,1);
+    VertexOut.texCoord = VertexIn.texCoord;
+    
+    return VertexOut;
+}
 
 /**************************** Fragment shader *****************************/
 
