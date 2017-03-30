@@ -21,12 +21,15 @@ class MTKViewController: UIViewController {
     var bufferProvider: BufferProvider!
     var renderPassDescriptor: MTLRenderPassDescriptor!
     var textureLoader: MTKTextureLoader! = nil
-    var pipelineState: MTLRenderPipelineState! = nil
-    var basicPipelineState: MTLRenderPipelineState! = nil
-    var cameraPipelineState: MTLRenderPipelineState! = nil
-    var depthStencilState: MTLDepthStencilState! = nil
-    var cameraDepthStencilState: MTLDepthStencilState! = nil
-    var mv: float4x4?
+    
+    // Pipelines
+    var pipelineState: MTLRenderPipelineState! = nil        // All shaders
+    var basicPipelineState: MTLRenderPipelineState! = nil   // Without lights
+    var cameraPipelineState: MTLRenderPipelineState! = nil  // Without lights and projection
+    
+    // DepthStencils
+    var depthStencilState: MTLDepthStencilState! = nil      // Depth buffer (GLDepthMask) -> true
+    var cameraDepthStencilState: MTLDepthStencilState! = nil// Depth buffer (GLDepthMask) -> false
     
     // MARK: Scene objects
     var camera: Camera!
@@ -35,6 +38,7 @@ class MTKViewController: UIViewController {
     var light: Light!
     var showCube: Bool = false
     var point: Point!
+    var mv: float4x4?
     
     // MARK: Scene init
     override func viewDidLoad() {
@@ -68,6 +72,8 @@ class MTKViewController: UIViewController {
         let lookAt = float3(0,0,0)
         let up = float3(0,1,0)
         let aspectRatio: Float = Float(self.view.bounds.size.width / self.view.bounds.size.height)
+//        print("width \(self.view.bounds.size.width )")
+//        print("height \(self.view.bounds.size.height )")
         camera = Camera(position: position, lookAt: lookAt, up: up, aspectRatio: aspectRatio, angleDregrees: 65.0, nearPlan: 2, farPlan: 1000.0)
         
         // Init Device
@@ -76,7 +82,7 @@ class MTKViewController: UIViewController {
         
         // Setting depthStencilDescriptor
         let depthStencilDescriptor = MTLDepthStencilDescriptor()
-        depthStencilDescriptor.depthCompareFunction = .less
+        depthStencilDescriptor.depthCompareFunction = .less // less comparisions
         depthStencilDescriptor.isDepthWriteEnabled = true
         depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor)
         
@@ -138,24 +144,26 @@ class MTKViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    func updateCube(position:float3, rotation:float3, scale:float3){
+    public func updateCube(position:float3, rotation:float3, scale:float3){
          /*cube.position = position
          cube.rotation = rotation
          cube.scale = scale*/
     }
     
-    func showCubeUpdate(value: Bool){
+    public func showCubeUpdate(value: Bool){
         showCube = value
     }
 }
 
 // MARK: MTKViewDelegate
 extension MTKViewController: MTKViewDelegate {
+    
+    // Update the view content (for example the manage of rotation)
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
     }
     
     func draw(in view: MTKView) {
-        // Use a guard to ensure the method has a valid current drawable,
+        // Use a guard to ensure the method has a valid current drawable
         guard
             let currentDrawable = view.currentDrawable
             else {
@@ -168,10 +176,10 @@ extension MTKViewController: MTKViewDelegate {
         renderPassDescriptor.colorAttachments[0].loadAction = .clear
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         
-        // Wait to the next Buffer
+        // Wait to the next Buffer to draw
         _ = bufferProvider.availableResourcesSemaphore.wait(timeout: .distantFuture)
         
-        // Get avaiable buffer and create a command buffer
+        // Get available buffer and create a command buffer
         let commandBuffer = commandQueue.makeCommandBuffer()
         commandBuffer.addCompletedHandler { (commandBuffer) -> Void in
             self.bufferProvider.availableResourcesSemaphore.signal()
@@ -180,11 +188,14 @@ extension MTKViewController: MTKViewDelegate {
         // Create and setting a Render Command Encoder
         let renderEncoderOpt = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
         renderEncoderOpt.setCullMode(MTLCullMode.front)
+        
+        // Set depth stencil with depth mask false
         renderEncoderOpt.setDepthStencilState(cameraDepthStencilState)
         
         // Render plane with the current content of the camera
         backgroundPlane.render(pipelineState: cameraPipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:backgroundPlane.modelMatrix())
   
+        // Set depth stencil with depth mask true
         renderEncoderOpt.setDepthStencilState(depthStencilState)
 
         //point.render(pipelineState: basicPipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView: point.modelMatrix())
@@ -192,6 +203,7 @@ extension MTKViewController: MTKViewDelegate {
         // Render the cube
         if (showCube) {
             if let mview  = cube.mV {
+                //mview.translate(-0.7, y: 0, z: 0)
                 cube.render(pipelineState: pipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:mview)
             } else {
                 cube.render(pipelineState: pipelineState, camera: camera, renderEncoderOpt: renderEncoderOpt, bufferProvider: bufferProvider, light: light, mView:cube.modelMatrix())

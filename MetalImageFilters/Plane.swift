@@ -63,7 +63,6 @@ class Plane {
                                   nil,
                                   &textureCache)
         
-        
         // Init vertex buffer
         let dataSize = vertexData.count * MemoryLayout.size(ofValue: vertexData[0])
         vertexBuffer = device.makeBuffer(bytes: vertexData, length: dataSize)
@@ -101,17 +100,12 @@ class Plane {
         
         renderEncoderOpt.setRenderPipelineState(pipelineState)
         
-        let viewMatrix: float4x4 = camera.getViewMatrix()
         let projectionMatrix: float4x4 = camera.getProjectionCamera()
         
         // Set memory buffer
         mV = self.modelMatrix()
         
-        
-        var value = mView
-        value.multiplyLeft(viewMatrix)
-        
-        let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: value, light: light)
+        let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: mView, light: light)
         
         renderEncoderOpt.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         renderEncoderOpt.setFragmentBuffer(uniformBuffer, offset: 0, at: 1)

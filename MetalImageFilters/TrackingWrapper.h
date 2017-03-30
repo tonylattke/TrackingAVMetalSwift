@@ -15,7 +15,7 @@
 - (void)addArrowPoints;
 - (void)setPunkteB;
 - (void)mouseDotsClear;
-- (void)BlackBoxDefineProjection:(int)width :(int)height :(float)aspectRatio :(float)focalLength :(NSString*) name;
+- (void)BlackBoxDefineProjection:(int)width :(int)height :(float)aspectRatio :(float)focalLength;
 - (void)track;
 - (int)getMViewN;
 - (int)getMViewM;

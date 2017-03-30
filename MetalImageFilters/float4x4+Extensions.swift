@@ -51,7 +51,7 @@ extension float4x4 {
     }
     
     static func makeFrustum(_ left: Float, _ right: Float, _ bottom: Float, _ top: Float, _ nearZ: Float, _ farZ: Float) -> float4x4 {
-        var q = unsafeBitCast(GLKMatrix4MakeFrustum(left, right, bottom, top, nearZ, farZ), to: float4x4.self)
+        let q = unsafeBitCast(GLKMatrix4MakeFrustum(left, right, bottom, top, nearZ, farZ), to: float4x4.self)
         // Tony
 //        let zs = farZ / (nearZ - farZ)
 //        q[2][2] = zs * nearZ * 2

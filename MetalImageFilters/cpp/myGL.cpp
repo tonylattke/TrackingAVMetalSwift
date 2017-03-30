@@ -23,10 +23,10 @@ myGL::~myGL(void){
 }
 
 // define projection matrix and viewport
-	// width, height: Screen resolution
-	// aspectRatio: width/height if pixels are squares
-	// focalLength: distance between eye point and image plane
-	// returns P: projection 4x4-matrix
+// width, height: Screen resolution
+// aspectRatio: width/height if pixels are squares
+// focalLength: distance between eye point and image plane
+// returns P: projection 4x4-matrix
 Mat myGL::DefineProjection( int width, int height, float aspectRatio, float focalLength){
 	WinWidth = width;
 	WinHeight = height;
@@ -40,9 +40,6 @@ Mat myGL::DefineProjection( int width, int height, float aspectRatio, float foca
 	glFrustum( -4.0/3.0, 4.0/3.0,	1, -1, 2.0, 1000);
 	*/
     Projection = glFrustum( -AspectRatio,AspectRatio, 1, -1, focalLength, 1000.0);
-    
-    Projection.Print("opengl Projection ");
-   
 
 	ReconsError = 100;
 	return Projection;
@@ -65,22 +62,15 @@ Mat myGL::RecoverModelview( const Mat &scx, const Mat &scy, const Mat &L){
 		M = glTranslate( Mat(3, 1, t0) );
 	}
 
- 	 
-  // Bug: return value erase the content of Projection
-   Mat P=Projection;
-    
-//	Mat P (Projection.m,Projection.n,Projection.p);
+    // Bug: return value erase the content of Projection
+    Mat P=Projection;
     
 	Mat vx = ApplyInverseViewport( scx, WinWidth);
 	Mat vy = ApplyInverseViewport( scy, WinHeight);
 
-
 	for( int k = 0; k < 2; k++){
 		Mat J = Jacobi( &V, L, M, P);
-		//sx = ApplyViewport( V.Row(0), w);
-		//sy = ApplyViewport( V.Row(1), h);
 		err = NextTo( vx-V.Row(0), vy-V.Row(1));
-		//printf( "Err=%9.6lf\n", Norm( err));
 
 		// least squares fitting
 		delta = LSQ( J, T(err));
@@ -92,9 +82,6 @@ Mat myGL::RecoverModelview( const Mat &scx, const Mat &scy, const Mat &L){
        
         M = glTranslate( delta.Get(0,0,3,1)) * M;
         
-        //test
-       // M = M*ref;
-       
 		// sanity check
 		if( M.Get(2,3) > 0){
 			M.Set(2,3, -M.Get(2,3));
@@ -106,7 +93,6 @@ Mat myGL::RecoverModelview( const Mat &scx, const Mat &scy, const Mat &L){
 	Modelview = M;
 	return Modelview;
 }
-
 
 Mat myGL::glFrustum( float left, float right, float bottom, float top, float near, float far){
 	// projection matrix from clipping planes
@@ -120,6 +106,7 @@ Mat myGL::glFrustum( float left, float right, float bottom, float top, float nea
 	P.Set(3, 2, -1.0);
 	return P;
 }
+
 Mat myGL::glRotate( const Mat &axis, float alpha){
 	// rotation matrix around arbitrary axis
 	// alpha in degrees
@@ -225,11 +212,6 @@ Mat myGL::Jacobi( Mat *V, const Mat &L, const Mat &M, const Mat &P){
 	float vca[] = {0,0,0,0,	0,0,-1,0,	0,1,0,0,	0,0,0,1};
 	float vcb[] = {0,0,1,0,	0,0,0,0,	-1,0,0,0,	0,0,0,1};
 	float vcc[] = {0,-1,0,0,	1,0,0,0,	0,0,0,0,	0,0,0,1};
-
-
-
-
-
 
 	Mat Xa = P * T(Mat(4,4,vca)) * C;
 	Mat Xb = P * T(Mat(4,4,vcb)) * C;

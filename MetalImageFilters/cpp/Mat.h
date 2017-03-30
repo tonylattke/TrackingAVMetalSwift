@@ -51,7 +51,6 @@ public:
 	friend Mat operator/( const Mat &a, float sc);
 	friend Mat operator/( float sc, const Mat &a);
 
-
 	friend Mat T( const Mat &a); // transpose
 	friend Mat OnTop( const Mat &a, const Mat &b);
 	friend Mat NextTo( const Mat &a, const Mat &b);

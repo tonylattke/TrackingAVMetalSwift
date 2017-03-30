@@ -68,28 +68,24 @@ void Tracking::writeVecs(){
 
 void Tracking::calcMVP(){
 
-    Mat sx = Mat(1,screenX_VEC.size());		for(int i = 0; i < screenX_VEC.size(); i++) sx.Set(0, i, screenX_VEC.at(i));
-	Mat sy = Mat(1,screenY_VEC.size());		for(int i = 0; i < screenY_VEC.size(); i++) sy.Set(0, i, screenY_VEC.at(i));
-	Mat L = Mat(3,markers_VEC_X.size());
-    Mat L1 = Mat(3,markers_VEC_X.size());
+    Mat sx = Mat(1, (int) screenX_VEC.size());		for(int i = 0; i < screenX_VEC.size(); i++) sx.Set(0, i, screenX_VEC.at(i));
+	Mat sy = Mat(1, (int) screenY_VEC.size());		for(int i = 0; i < screenY_VEC.size(); i++) sy.Set(0, i, screenY_VEC.at(i));
+	Mat L  = Mat(3, (int) markers_VEC_X.size());
+    Mat L1 = Mat(3, (int) markers_VEC_X.size());
 	
 	for(int i = 0; i < markers_VEC_X.size(); i++) {
 		L.Set(0, i, markers_VEC_X.at(i));
 		L.Set(1, i, markers_VEC_Y.at(i));
 		L.Set(2, i, 0);
 	}
-
     
     for(int i = 0; i < markers_VEC_X.size(); i++) {
         L1.Set(0, i, markers_VEC_X.at(i));
         L1.Set(1, i, markers_VEC_Y.at(i));
         L1.Set(2, i, 1.f);
     }
-    
 
 	mView = BlackBox.RecoverModelview(sx, sy, L);
-    
-    mView.Print("model view Martin");
     
     //  Mat p=BlackBox.Local2Screen(testpoint);
 	Mat S = BlackBox.Local2Screen(L);
@@ -103,17 +99,7 @@ void Tracking::calcMVP(){
         cv::circle(bild, cv::Point2d(S1.Get(0,i), S1.Get(1,i)), 3, cv::Scalar(0,255,0), -1, CV_AA);
 
         cv::line(bild, cv::Point2d(S.Get(0,i), S.Get(1,i)), cv::Point2d(S1.Get(0,i), S1.Get(1,i)),cv::Scalar(255,255,255));
-     /* y x
-        cv::line(bild, cv::Point2d(S.Get(1,0), S.Get(0,0)), cv::Point2d(S.Get(1,1), S.Get(0,1)),cv::Scalar(255,255,255));
-        cv::line(bild, cv::Point2d(S.Get(1,1), S.Get(0,1)), cv::Point2d(S.Get(1,2), S.Get(0,2)),cv::Scalar(255,255,255));
-        cv::line(bild, cv::Point2d(S.Get(1,2), S.Get(0,2)), cv::Point2d(S.Get(1,3), S.Get(0,3)),cv::Scalar(255,255,255));
-        cv::line(bild, cv::Point2d(S.Get(1,3), S.Get(0,3)), cv::Point2d(S.Get(1,4), S.Get(0,4)),cv::Scalar(255,255,255));
-        cv::line(bild, cv::Point2d(S.Get(1,4), S.Get(0,4)), cv::Point2d(S.Get(1,5), S.Get(0,5)),cv::Scalar(255,255,255));
-        cv::line(bild, cv::Point2d(S.Get(1,5), S.Get(0,5)), cv::Point2d(S.Get(1,6), S.Get(0,6)),cv::Scalar(255,255,255));
-        cv::line(bild, cv::Point2d(S.Get(1,6), S.Get(0,6)), cv::Point2d(S.Get(1,0), S.Get(0,0)),cv::Scalar(255,255,255));
-        */
- 
-     // x y
+
         cv::line(bild, cv::Point2d(S.Get(0,0), S.Get(1,0)), cv::Point2d(S.Get(0,1), S.Get(1,1)),cv::Scalar(255,255,255));
         cv::line(bild, cv::Point2d(S.Get(0,1), S.Get(1,1)), cv::Point2d(S.Get(0,2), S.Get(1,2)),cv::Scalar(255,255,255));
         cv::line(bild, cv::Point2d(S.Get(0,2), S.Get(1,2)), cv::Point2d(S.Get(0,3), S.Get(1,3)),cv::Scalar(255,255,255));
@@ -129,11 +115,8 @@ void Tracking::calcMVP(){
         cv::line(bild, cv::Point2d(S1.Get(0,4), S1.Get(1,4)), cv::Point2d(S1.Get(0,5), S1.Get(1,5)),cv::Scalar(255,0,0));
         cv::line(bild, cv::Point2d(S1.Get(0,5), S1.Get(1,5)), cv::Point2d(S1.Get(0,6), S1.Get(1,6)),cv::Scalar(255,0,0));
         cv::line(bild, cv::Point2d(S1.Get(0,6), S1.Get(1,6)), cv::Point2d(S1.Get(0,0), S1.Get(1,0)),cv::Scalar(255,0,0));
-        
     }
    
-    
-
 	if (fileWrite) {
 
 		ofstream file ("_Koordinaten.txt", ios::out|ios::app);
@@ -160,34 +143,27 @@ void Tracking::paintMouseDots(){
 
 void Tracking::addArrowPoints(){
     
-    /* Tony / 3
-    mouseDots.push_back(cv::Point2f(90,143.333));
-    mouseDots.push_back(cv::Point2f(122.666,143.333));
-    mouseDots.push_back(cv::Point2f(122.666,80));
-    mouseDots.push_back(cv::Point2f(138.333,80));
-    mouseDots.push_back(cv::Point2f(106.333,32.333));
-    mouseDots.push_back(cv::Point2f(90,80));
-    mouseDots.push_back(cv::Point2f(74.333,80));
+    // Platini / 2 ---- (x/2+80, y/2+200)
+    /*
+    mouseDots.push_back(cv::Point2f(215,415));
+    mouseDots.push_back(cv::Point2f(264,415));
+    mouseDots.push_back(cv::Point2f(264,320));
+    mouseDots.push_back(cv::Point2f(287.5,320));
+    mouseDots.push_back(cv::Point2f(240,248.5));
+    mouseDots.push_back(cv::Point2f(192.5,320));
+    mouseDots.push_back(cv::Point2f(215,320));
     */
     
-    //Tony / 2
-  /*  mouseDots.push_back(cv::Point2f(214,415));
-    mouseDots.push_back(cv::Point2f(263,415));
-    mouseDots.push_back(cv::Point2f(263,320));
-    mouseDots.push_back(cv::Point2f(286.5,320));
-    mouseDots.push_back(cv::Point2f(238.5,248.5));
-    mouseDots.push_back(cv::Point2f(214,320));
-    mouseDots.push_back(cv::Point2f(181.5,320));*/
-     
-    /*tony original points*/
-   /* mouseDots.push_back(cv::Point2f(270,430));
-    mouseDots.push_back(cv::Point2f(368,430));
-    mouseDots.push_back(cv::Point2f(368,240));
-    mouseDots.push_back(cv::Point2f(415,240));
-    mouseDots.push_back(cv::Point2f(319,97));
-    mouseDots.push_back(cv::Point2f(270,240));
-    mouseDots.push_back(cv::Point2f(223,240));
-   */
+    // Platini centered
+    mouseDots.push_back(cv::Point2f(200,430+20));
+    mouseDots.push_back(cv::Point2f(298,430+20));
+    mouseDots.push_back(cv::Point2f(298,240+20));
+    mouseDots.push_back(cv::Point2f(345,240+20));
+    mouseDots.push_back(cv::Point2f(250,97+20));
+    mouseDots.push_back(cv::Point2f(155,240+20));
+    mouseDots.push_back(cv::Point2f(200,240+20));
+
+    /* Platini
     mouseDots.push_back(cv::Point2f(270,430));
     mouseDots.push_back(cv::Point2f(368,430));
     mouseDots.push_back(cv::Point2f(368,240));
@@ -195,61 +171,21 @@ void Tracking::addArrowPoints(){
     mouseDots.push_back(cv::Point2f(320,97));
     mouseDots.push_back(cv::Point2f(225,240));
     mouseDots.push_back(cv::Point2f(270,240));
-   
-   
- 
-    
-  
- 
-  
-    /*
-     Mat sx = Mat(1,7);
-    Mat sy = Mat(1,7);
-    
-    sx.Set(0, 0, 270);
-    sx.Set(0, 1, 368);
-    sx.Set(0, 2, 368);
-    sx.Set(0, 3, 415);
-    sx.Set(0, 4, 320);
-    sx.Set(0, 5, 225);
-    sx.Set(0, 6, 270);
-    
-    sy.Set(0, 0, 430);
-    sy.Set(0, 1, 430);
-    sy.Set(0, 2, 240);
-    sy.Set(0, 3, 240);
-    sy.Set(0, 4, 97);
-    sy.Set(0, 5, 240);
-    sy.Set(0, 6, 240);
-    
-    Mat Vx = BlackBox.ApplyInverseViewport(sx, 640.0);
-    Mat Vy = BlackBox.ApplyInverseViewport(sy, 480.0);
-    
-    //Vx = 0.75 * Vx; //X screen reduces to 480
-    Vx =  Vx;
-    Vy = -Vy; //Y- screen size remains the same but Opengl rotates it by 180°
-    Vx.Print("Opengl X Coordinates");
-    Vy.Print("Opengl Y Coordinates");
     */
-
-
-    
 }
 
 
 void Tracking::clearAll(){
-
 	punkteA.clear();
 	punkteB.clear();
 	mouseDots.clear();
 	status.clear();
-	// proj.m = proj.n = 0;
+	
 	mView.m = mView.n = 0;
 	clearVecs();
 }
 
 void Tracking::clearVecs(){
-
 	screenX_VEC.clear();
 	screenY_VEC.clear();
 	markers_VEC_X.clear();

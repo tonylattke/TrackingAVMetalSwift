@@ -11,7 +11,7 @@ import simd
 
 class Camera {
     
-    // View Model Matrix
+    // View Matrix
     var viewMatrix: float4x4!
     
     // Projection Matrix
@@ -35,7 +35,6 @@ class Camera {
         viewMatrix = float4x4.makeLookAt(position.x, position.y, position.z, lookAt.x, lookAt.y, lookAt.z, up.x, up.y, up.z)
         //projectionMatrix = float4x4.makePerspectiveViewAngle(self.angle, aspectRatio: self.aspectRatio, nearZ: self.nearPlan, farZ: self.farPlan)
         projectionMatrix = float4x4.makeFrustum(-aspectRatio, aspectRatio, -1, 1, nearPlan, farPlan)
-        print("metal projection  \(projectionMatrix!)")
     }
     
     // Get view matrix
@@ -46,14 +45,5 @@ class Camera {
     // Get projection matrix
     func getProjectionCamera() -> float4x4 {
         return projectionMatrix
-    }
-    
-    // Update projection matrix
-    func projectionMatrixUpdate(aspectRatio: Float){
-        let newProjectionMatrix = float4x4.makePerspectiveViewAngle(self.angle,
-                                                                    aspectRatio: aspectRatio,
-                                                                    nearZ: self.nearPlan,
-                                                                    farZ: self.farPlan)
-        self.projectionMatrix = newProjectionMatrix
     }
 }

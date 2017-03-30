@@ -116,8 +116,8 @@ class Cube {
     }
     
     func modelMatrix() -> float4x4 {
-        var matrix = float4x4()
-        matrix.translate(0, y: 0, z: -2.4)
+        let matrix = float4x4()
+        //matrix.translate(0, y: 0, z: -2.4)
         return matrix
     }
     
@@ -143,18 +143,17 @@ class Cube {
         
         renderEncoderOpt.setRenderPipelineState(pipelineState)
         
-      //  let viewMatrix: float4x4 = camera.getViewMatrix()
+        //  let viewMatrix: float4x4 = camera.getViewMatrix()
         let projectionMatrix: float4x4 = camera.getProjectionCamera()
         
         // Set memory buffer
-        mV = self.modelMatrix()
+        //mV = self.modelMatrix()
         
+        // var value = mView
+        // value.multiplyLeft(viewMatrix)
         
-       // var value = mView
-     //   value.multiplyLeft(viewMatrix)
-        
-   //     let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: value, light: light)
-          let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: mView, light: light)
+        // let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: value, light: light)
+        let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: mView, light: light)
         renderEncoderOpt.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         renderEncoderOpt.setFragmentBuffer(uniformBuffer, offset: 0, at: 1)
         renderEncoderOpt.setFragmentTexture(texture, at: 0)

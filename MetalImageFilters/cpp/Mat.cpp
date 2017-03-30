@@ -194,6 +194,7 @@ Mat OnTop( const Mat &a, const Mat &b){
 	}
 	return c;
 }
+
 Mat NextTo( const Mat &a, const Mat &b){
 	Assert( a.m==b.m, "Matrix dimensions must agree in OnTop");
 	Mat c ( a.m, a.n+b.n);
@@ -203,7 +204,6 @@ Mat NextTo( const Mat &a, const Mat &b){
 	}
 	return c;
 }
-
 
 Mat LU( const Mat &a){ // LU decomposition in one matrix
 	Assert( a.m==a.n, "Mat must be square");

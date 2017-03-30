@@ -106,14 +106,10 @@ class Point {
     func render(pipelineState: MTLRenderPipelineState, camera: Camera, renderEncoderOpt: MTLRenderCommandEncoder, bufferProvider: BufferProvider, light: Light, mView:float4x4){
         
         renderEncoderOpt.setRenderPipelineState(pipelineState)
-        
-        let viewMatrix: float4x4 = camera.getViewMatrix()
+
         let projectionMatrix: float4x4 = camera.getProjectionCamera()
         
-        var value = mView
-        value.multiplyLeft(viewMatrix)
-        
-        let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: value, light: light)
+        let uniformBuffer = bufferProvider.nextUniformsBuffer(projectionMatrix: projectionMatrix, modelViewMatrix: mView, light: light)
         
         renderEncoderOpt.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         renderEncoderOpt.setFragmentBuffer(uniformBuffer, offset: 0, at: 1)

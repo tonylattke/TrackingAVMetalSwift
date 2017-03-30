@@ -33,6 +33,7 @@
 
 - (void)dealloc{
     delete self.cppItem;
+    self.cppItem = nil;
     //[super dealloc];
 }
 
@@ -61,7 +62,10 @@
 //    }
     
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+  
     self.cppItem->setImage(bgraImageCopy);
+    
+    
 }
 
 - (void)setPunkteB{
@@ -72,10 +76,8 @@
     self.cppItem->mouseDots.clear();
 }
 
-- (void) BlackBoxDefineProjection:(int)width :(int)height :(float)aspectRatio :(float)focalLength :(NSString*) name {
+- (void) BlackBoxDefineProjection:(int)width :(int)height :(float)aspectRatio :(float)focalLength {
     self.cppItem->BlackBox.DefineProjection(width,height,aspectRatio,focalLength);
-    char* nameChar = strdup([name UTF8String]);
-    self.cppItem->BlackBox.Projection.Print(nameChar);
 }
 
 - (void)track{
